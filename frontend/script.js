@@ -10,11 +10,12 @@ const missingSkills = document.getElementById("missingSkills");
 const suggestions = document.getElementById("suggestions");
 
 
-// Show selected file name
+// Show selected file
 resumeFile.addEventListener("change", function () {
 
     if (resumeFile.files.length > 0) {
-        fileName.textContent = "Selected: " + resumeFile.files[0].name;
+        fileName.textContent =
+            "Selected: " + resumeFile.files[0].name;
     } else {
         fileName.textContent = "No file selected";
     }
@@ -22,8 +23,8 @@ resumeFile.addEventListener("change", function () {
 });
 
 
-// Analyze resume
-resumeForm.addEventListener("submit", function (event) {
+// Submit resume
+resumeForm.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
@@ -34,7 +35,6 @@ resumeForm.addEventListener("submit", function (event) {
 
     const file = resumeFile.files[0];
 
-    // Check PDF
     if (file.type !== "application/pdf") {
         alert("Please upload a PDF file.");
         return;
@@ -44,38 +44,85 @@ resumeForm.addEventListener("submit", function (event) {
     loading.style.display = "block";
     results.style.display = "none";
 
-    // Temporary demo analysis
-    setTimeout(function () {
+    // Create form data
+    const formData = new FormData();
+    formData.append("resume", file);
 
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/analyze",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || "Analysis failed");
+        }
+
+        // Display score
+        score.textContent = data.score;
+
+        // Display skills
+        skills.innerHTML = "";
+
+        data.skills.forEach(function (skill) {
+
+            const li = document.createElement("li");
+            li.textContent = skill;
+
+            skills.appendChild(li);
+
+        });
+
+
+        // Display missing skills
+        missingSkills.innerHTML = "";
+
+        data.missing_skills.forEach(function (skill) {
+
+            const li = document.createElement("li");
+            li.textContent = skill;
+
+            missingSkills.appendChild(li);
+
+        });
+
+
+        // Display suggestions
+        suggestions.innerHTML = "";
+
+        data.suggestions.forEach(function (suggestion) {
+
+            const li = document.createElement("li");
+            li.textContent = suggestion;
+
+            suggestions.appendChild(li);
+
+        });
+
+
+        // Show results
         loading.style.display = "none";
         results.style.display = "block";
-
-        score.textContent = "78";
-
-        skills.innerHTML = `
-            <li>Python</li>
-            <li>HTML & CSS</li>
-            <li>JavaScript</li>
-            <li>Problem Solving</li>
-        `;
-
-        missingSkills.innerHTML = `
-            <li>Machine Learning</li>
-            <li>SQL</li>
-            <li>Git & GitHub</li>
-        `;
-
-        suggestions.innerHTML = `
-            <li>Add measurable project achievements.</li>
-            <li>Improve your skills section.</li>
-            <li>Add relevant AI/ML projects.</li>
-            <li>Keep your resume concise.</li>
-        `;
 
         results.scrollIntoView({
             behavior: "smooth"
         });
 
-    }, 2000);
+    } catch (error) {
+
+        loading.style.display = "none";
+
+        alert(
+            "Could not connect to the backend.\n\n" +
+            error.message
+        );
+
+    }
 
 });
