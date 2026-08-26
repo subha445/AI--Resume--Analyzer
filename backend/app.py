@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from PyPDF2 import PdfReader
 import os
 
 app = Flask(__name__)
@@ -45,32 +46,73 @@ def analyze_resume():
 
     resume.save(file_path)
 
-    # Temporary demo analysis
-    result = {
-        "score": 78,
+    # Extract text from PDF
+    try:
+        reader = PdfReader(file_path)
 
-        "skills": [
-            "Python",
-            "HTML & CSS",
-            "JavaScript",
-            "Problem Solving"
-        ],
+        text = ""
 
-        "missing_skills": [
-            "Machine Learning",
-            "SQL",
-            "Git & GitHub"
-        ],
+        for page in reader.pages:
+            page_text = page.extract_text()
 
-        "suggestions": [
-            "Add measurable project achievements.",
-            "Improve your skills section.",
-            "Add relevant AI/ML projects.",
-            "Keep your resume concise."
-        ]
-    }
+            if page_text:
+                text += page_text + "\n"
 
-    return jsonify(result)
+    except Exception as error:
+        return jsonify({
+            "error": f"Could not read PDF: {str(error)}"
+        }), 500
+
+    # Basic analysis
+    text_lower = text.lower()
+
+    skills_list = [
+        "python",
+        "java",
+        "javascript",
+        "html",
+        "css",
+        "sql",
+        "machine learning",
+        "data science",
+        "git",
+        "github"
+    ]
+
+    found_skills = []
+
+    for skill in skills_list:
+        if skill in text_lower:
+            found_skills.append(skill.title())
+
+
+    # Skills that were not found
+    missing_skills = []
+
+    for skill in skills_list:
+        if skill not in text_lower:
+            missing_skills.append(skill.title())
+
+
+    # Calculate basic score
+    score = min(100, len(found_skills) * 10 + 20)
+
+
+    suggestions = [
+        "Add more relevant technical skills.",
+        "Include your best projects.",
+        "Add measurable achievements.",
+        "Keep your resume clear and concise."
+    ]
+
+
+    return jsonify({
+        "score": score,
+        "skills": found_skills,
+        "missing_skills": missing_skills[:5],
+        "suggestions": suggestions,
+        "text_length": len(text)
+    })
 
 
 if __name__ == "__main__":
