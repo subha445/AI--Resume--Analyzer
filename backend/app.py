@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from PyPDF2 import PdfReader
+from analyzer import analyze_resume
 import os
 
 app = Flask(__name__)
@@ -20,7 +21,7 @@ def home():
 
 
 @app.route("/analyze", methods=["POST"])
-def analyze_resume():
+def analyze_resume_file():
 
     if "resume" not in request.files:
         return jsonify({
@@ -46,7 +47,6 @@ def analyze_resume():
 
     resume.save(file_path)
 
-    # Extract text from PDF
     try:
         reader = PdfReader(file_path)
 
@@ -63,56 +63,15 @@ def analyze_resume():
             "error": f"Could not read PDF: {str(error)}"
         }), 500
 
-    # Basic analysis
-    text_lower = text.lower()
+    if not text.strip():
+        return jsonify({
+            "error": "Could not extract text from this PDF."
+        }), 400
 
-    skills_list = [
-        "python",
-        "java",
-        "javascript",
-        "html",
-        "css",
-        "sql",
-        "machine learning",
-        "data science",
-        "git",
-        "github"
-    ]
+    # Analyze the extracted resume text
+    result = analyze_resume(text)
 
-    found_skills = []
-
-    for skill in skills_list:
-        if skill in text_lower:
-            found_skills.append(skill.title())
-
-
-    # Skills that were not found
-    missing_skills = []
-
-    for skill in skills_list:
-        if skill not in text_lower:
-            missing_skills.append(skill.title())
-
-
-    # Calculate basic score
-    score = min(100, len(found_skills) * 10 + 20)
-
-
-    suggestions = [
-        "Add more relevant technical skills.",
-        "Include your best projects.",
-        "Add measurable achievements.",
-        "Keep your resume clear and concise."
-    ]
-
-
-    return jsonify({
-        "score": score,
-        "skills": found_skills,
-        "missing_skills": missing_skills[:5],
-        "suggestions": suggestions,
-        "text_length": len(text)
-    })
+    return jsonify(result)
 
 
 if __name__ == "__main__":
