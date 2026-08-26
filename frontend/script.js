@@ -65,7 +65,7 @@ resumeForm.addEventListener("submit", async function (event) {
         }
 
         // Display score
-        score.textContent = data.score;
+        animateScore(data.score);
 
         // Display skills
         skills.innerHTML = "";
