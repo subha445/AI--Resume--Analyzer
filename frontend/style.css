@@ -190,6 +190,86 @@ body {
 }
 
 .results h2 {
+    font-size: 32px;
+    margin-bottom: 35px;
+}
+
+/* Score Card */
+.score-card {
+    max-width: 320px;
+    margin: 0 auto 40px;
+    padding: 35px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.score-card h3 {
+    color: #374151;
+}
+
+.score {
+    font-size: 60px;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-top: 15px;
+}
+
+/* Result Cards */
+.result-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.result-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: left;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    transition: 0.3s;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+}
+
+.result-card h3 {
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+.result-card ul {
+    padding-left: 20px;
+}
+
+.result-card li {
+    margin-bottom: 12px;
+    color: #4b5563;
+}
+
+/* Mobile Results */
+@media (max-width: 768px) {
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .results {
+        padding: 60px 20px;
+    }
+}
+.results {
+    padding: 80px 8%;
+    background: #eef2ff;
+    text-align: center;
+    display: none;
+}
+
+.results h2 {
     margin-bottom: 30px;
 }
 
