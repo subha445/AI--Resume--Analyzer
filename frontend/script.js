@@ -125,4 +125,21 @@ resumeForm.addEventListener("submit", async function (event) {
 
     }
 
-});
+});function animateScore(targetScore) {
+
+    let currentScore = 0;
+
+    score.textContent = "0";
+
+    const interval = setInterval(function () {
+
+        currentScore++;
+
+        score.textContent = currentScore;
+
+        if (currentScore >= targetScore) {
+            clearInterval(interval);
+        }
+
+    }, 20);
+}
