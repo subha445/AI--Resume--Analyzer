@@ -111,7 +111,7 @@ This project is being built to learn and demonstrate:
 
 👨‍💻 Developer
 
-Viswa
+Subha
 
 Built with ❤️ using HTML, CSS, JavaScript and Python.
 
