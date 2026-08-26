@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Analyzer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">AI Resume Analyzer</div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#analyze">Analyze</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Analyze Your Resume
+                <span>With AI</span>
+            </h1>
+
+            <p>
+                Upload your resume and get an AI-powered analysis,
+                skill recommendations, and improvement suggestions.
+            </p>
+
+            <a href="#analyze" class="btn">
+                Analyze Resume
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Analyzer Section -->
+    <section class="analyzer" id="analyze">
+
+        <div class="analyzer-card">
+
+            <h2>📄 Upload Your Resume</h2>
+
+            <p>
+                Upload your PDF resume to start the AI analysis.
+            </p>
+
+            <form id="resumeForm">
+
+                <div class="upload-box">
+
+                    <input
+                        type="file"
+                        id="resumeFile"
+                        accept=".pdf"
+                        required
+                    >
+
+                    <label for="resumeFile">
+                        📁 Choose Resume PDF
+                    </label>
+
+                    <p id="fileName">
+                        No file selected
+                    </p>
+
+                </div>
+
+                <button type="submit" class="analyze-btn">
+                    🤖 Analyze Resume
+                </button>
+
+            </form>
+
+            <!-- Loading -->
+            <div id="loading" class="loading">
+                <p>🤖 AI is analyzing your resume...</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Results Section -->
+    <section class="results" id="results">
+
+        <h2>📊 Resume Analysis</h2>
+
+        <div class="score-card">
+
+            <h3>Resume Score</h3>
+
+            <div class="score">
+                <span id="score">--</span>/100
+            </div>
+
+        </div>
+
+
+        <div class="result-grid">
+
+            <div class="result-card">
+
+                <h3>💪 Strong Skills</h3>
+
+                <ul id="skills">
+                    <li>Upload a resume to see results</li>
+                </ul>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>⚠️ Missing Skills</h3>
+
+                <ul id="missingSkills">
+                    <li>Upload a resume to see results</li>
+                </ul>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <h3>💡 Suggestions</h3>
+
+                <ul id="suggestions">
+                    <li>Upload a resume to see results</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section class="about" id="about">
+
+        <h2>About AI Resume Analyzer</h2>
+
+        <p>
+            AI Resume Analyzer helps students and job seekers
+            understand how strong their resume is and what skills
+            they can improve.
+        </p>
+
+        <div class="features">
+
+            <div>
+                <h3>🤖 AI Analysis</h3>
+                <p>Automatically analyze resume content.</p>
+            </div>
+
+            <div>
+                <h3>📊 Resume Score</h3>
+                <p>Get a score based on your resume.</p>
+            </div>
+
+            <div>
+                <h3>🚀 Skill Suggestions</h3>
+                <p>Discover skills you can add to your resume.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 AI Resume Analyzer | Built with HTML, CSS & JavaScript
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
