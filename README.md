@@ -1,120 +1,70 @@
+# 🤖 AI Resume Analyzer
 
-🤖 AI Resume Analyzer
+An AI-powered Resume Analyzer web application that helps students and job seekers analyze their resumes, detect skills, identify missing skills, calculate a resume score, and receive improvement suggestions.
 
-An AI-powered web application that analyzes resumes and provides useful feedback to help improve them.
+## 🌐 Live Demo
 
-✨ Features
+🚀 **[Open AI Resume Analyzer](https://subha445.github.io/AI--Resume--Analyzer/)**
 
-- 📄 Upload PDF resumes
-- 📊 Resume scoring
-- 💪 Detect skills
-- ⚠️ Find missing skills
-- 💡 Get improvement suggestions
-- 🤖 Resume analysis engine
-- 📱 Responsive design
-- 🌐 Frontend + Python backend
+### 🔗 Backend API
 
-🛠️ Technologies
+🐍 **[AI Resume Analyzer API](https://ai-resume-analyzer-2aq6.onrender.com/)**
 
-Frontend
+> Frontend is hosted on GitHub Pages and the Flask backend is deployed on Render.
+
+---
+
+## ✨ Features
+
+- 📄 Upload Resume PDF
+- 📊 Resume Score
+- 💪 Technical Skill Detection
+- ⚠️ Missing Skill Detection
+- 💡 Resume Improvement Suggestions
+- 🤖 Resume Analysis
+- 📱 Responsive Design
+- 🌐 GitHub Pages Frontend
+- 🐍 Flask Backend
+- ☁️ Render Backend Deployment
+- 🔗 Frontend + Backend API Integration
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
 
 - HTML5
 - CSS3
 - JavaScript
 
-Backend
+### Backend
 
 - Python
 - Flask
 - Flask-CORS
 - PyPDF2
+- Gunicorn
 
-📁 Project Structure
+### Deployment
 
-AI-Resume-Analyzer/
+- GitHub
+- GitHub Pages
+- Render
+
+---
+
+## 📁 Project Structure
+
+```text
+AI--Resume--Analyzer/
 │
-├── index.html
-├── style.css
-├── script.js
-├── README.md
+├── backend/
+│   ├── app.py
+│   ├── analyzer.py
+│   └── requirements.txt
 │
 ├── frontend/
 │   ├── index.html
 │   ├── style.css
-│   └── script.js
-│
-└── backend/
-    ├── app.py
-    ├── analyzer.py
-    └── requirements.txt
-
-🔄 How It Works
-
-📄 Resume PDF
-      ↓
-🌐 Frontend
-      ↓
-🐍 Flask Backend
-      ↓
-📖 PDF Text Extraction
-      ↓
-🤖 Resume Analyzer
-      ↓
-📊 Score + Skills + Suggestions
-
-🎯 Resume Analysis
-
-The analyzer currently checks for technical skills such as:
-
-- Python
-- Java
-- JavaScript
-- HTML
-- CSS
-- SQL
-- Machine Learning
-- Data Science
-- Git
-- GitHub
-
-It then generates:
-
-- Resume score
-- Detected skills
-- Missing skills
-- Improvement suggestions
-
-🚀 Future Plans
-
-- Real AI/LLM integration
-- ATS compatibility score
-- Job description matching
-- AI-powered resume feedback
-- Resume keyword optimization
-- User login
-- Database integration
-- Cloud deployment
-- Professional analytics dashboard
-
-📌 Project Status
-
-🚧 Currently under development
-
-This project is being built to learn and demonstrate:
-
-- Web development
-- Python
-- Flask APIs
-- PDF processing
-- AI/ML concepts
-- GitHub and deployment
-
-👨‍💻 Developer
-
-Subha
-
-Built with ❤️ using HTML, CSS, JavaScript and Python.
-
----
-
-⭐ If you like this project, consider giving the repository a star!
+│   └──
