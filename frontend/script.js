@@ -51,7 +51,7 @@ resumeForm.addEventListener("submit", async function (event) {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/analyze",
+            "https://ai-resume-analyzer-2aq6.onrender.com/analyze",
             {
                 method: "POST",
                 body: formData
